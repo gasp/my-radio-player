@@ -33,7 +33,7 @@ class Player extends Component {
         </div>
         <div className="display"></div>
         <audio controls="controls">
-          <source src={this.props.source} />
+          <source src={this.props.source} type="audio/mp3" />
         </audio>
       </div>
     )
