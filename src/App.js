@@ -44,8 +44,8 @@ class App extends Component {
         </p>
         <Controls />
         <Settings />
-        <Player />
-        <Playlist stations={stations}/>
+        <Player source="http://radiomeuh.ice.infomaniak.ch:8000/radiomeuh-128.mp3" />
+        <Playlist stations={stations} />
 
       </div>
     );
