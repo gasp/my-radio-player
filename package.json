@@ -1,6 +1,6 @@
 {
-  "name": "react-app",
-  "version": "0.1.0",
+  "name": "my-radio-player",
+  "version": "0.1.1",
   "private": true,
   "devDependencies": {
     "react-scripts": "0.6.0"
