@@ -4,22 +4,19 @@ import './Playlist.css';
 import PlayingAnimation from './PlayingAnimation'
 
 class Station extends Component {
+
   render() {
     var className = "station"
     var play = "play"
     if (this.props.selected) {
       className += " selected";
-      play = <PlayingAnimation />;
-    }
-    if (this.props.playing) {
-      className += " playing";
-      play = <PlayingAnimation />;
+      play = <PlayingAnimation />; // TODO: to be removed
     }
 
     return (
       <tr className={className}>
         <td className="num">{this.props.index + 1}</td>
-        <td className="control" onClick={this.props.play}>{play}</td>
+        <td id={this.props.id} className="control" onClick={this.props.select}>{play}</td>
         <td className="title">{this.props.children}</td>
         <td className="description">{this.props.description}</td>
       </tr>
@@ -31,25 +28,37 @@ class Playlist extends Component {
   constructor(props) {
     super(props);
     this.state =  {
-      stations: props.stations,
-      selectedStation: 0
+      selectedId: props.stations[0].id,
     };
     this.next = this.next.bind(this);
+    this.select = this.select.bind(this);
     console.log('playlist:',this.props.stations.length, 'stations');
   }
-  next(evt) {
+  next() {
+    let current = this.props.stations.map(el => el.id).indexOf(this.state.selectedId);
+    let next = (current + 1) % this.props.stations.length;
     this.setState({
-      selectedStation: (this.state.selectedStation + 1) %
-        this.props.stations.length
+      selectedId: this.props.stations[next].id
     });
+    this.props.station(this.props.stations[next]);
+  }
+  select(evt) {
+    let current = this.props.stations.map(el => el.id).indexOf(parseInt(evt.target.id, 10));
+    this.setState({
+      selectedId: parseInt(evt.target.id, 10)
+    });
+    this.props.station(this.props.stations[current]);
   }
   render() {
     var stations = [];
     for (var ii = 0; ii < this.props.stations.length; ii++) {
-      var isSelected = (ii === this.state.selectedStation);
+      var isSelected = (this.props.stations[ii].id === this.state.selectedId);
       stations.push(
-        <Station index={ii} selected={isSelected} key={this.props.stations[ii].id}
-          description={this.props.stations[ii].description}>
+        <Station index={ii} selected={isSelected}
+          key={this.props.stations[ii].id}
+          id={this.props.stations[ii].id}
+          description={this.props.stations[ii].description}
+          select={this.select} >
           {this.props.stations[ii].title}
         </Station>
       )
@@ -67,9 +76,19 @@ class Playlist extends Component {
     );
   }
 }
-Playlist.propTypes = { stations: React.PropTypes.array};
-Playlist.defaultProps = { stations: [
-  { id: 99999999, title: 'No radio', description: "You should have some radios there" }
-]};
+Playlist.propTypes = {
+  stations: React.PropTypes.array,
+  station: React.PropTypes.func
+};
+Playlist.defaultProps = {
+  stations: [
+    {
+      id: 99999999, title: 'No radio',
+      description: "You should have some radios there",
+      source: "http://perdu.com"
+    }
+  ],
+  station: function () { return false; }
+};
 
 export default Playlist;

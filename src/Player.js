@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import './Player.css';
 
-// TODO: source is passed as props
-// it should be great to find a way to do a mix cross-chaining files while loading
-
 class Player extends Component {
   constructor(props) {
     super(props);
     this.state =  {
       volume: props.volume,
-      src: null
+      source: null // this may be translated into prop
     };
     this.volume = this.volume.bind(this);
   }
@@ -21,20 +18,25 @@ class Player extends Component {
     ev.stopPropagation();
     ev.preventDefault();
   }
+  componentDidMount() {
+    // https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events
+    console.log('mounted');
+    let $audio = document.querySelector('audio');
 
 
+  }
   render() {
     // https://github.com/davidchin/react-input-range would be a good solution
     return (
       <div className="player">
-        <div className="timeline"><progress value="22" max="100" /></div>
+        <div className="timeline">
+          <progress value="22" max="100" />
+        </div>
         <div className="volume">
           <input type="range" min="0" max="100" onChange={this.volume} />
         </div>
-        <div className="display"></div>
-        <audio controls="controls">
-          <source src={this.props.source} type="audio/mp3" />
-        </audio>
+        <div className="display">{this.props.station.source}</div>
+        <audio controls="controls" src={this.props.station.source} type="audio/mp3" />
       </div>
     )
   }
@@ -42,11 +44,11 @@ class Player extends Component {
 
 Player.propTypes = {
   volume: React.PropTypes.number,
-  source: React.PropTypes.string
+  station: React.PropTypes.object
 };
 Player.defaultProps = {
   volume: 50,
-  source: ''
+  station: {id: 42, source: ''}
 };
 
 export default Player;

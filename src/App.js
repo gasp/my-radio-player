@@ -32,6 +32,18 @@ const stations = [
 ];
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state =  {
+      station: stations[0],
+    };
+    this.setStation = this.setStation.bind(this);
+  }
+  setStation(a) {
+    this.setState({
+      station: a
+    });
+  }
   render() {
     return (
       <div className="App">
@@ -44,8 +56,8 @@ class App extends Component {
         </p>
         <Controls />
         <Settings />
-        <Player source="http://radiomeuh.ice.infomaniak.ch:8000/radiomeuh-128.mp3" />
-        <Playlist stations={stations} />
+        <Player station={this.state.station} />
+        <Playlist stations={stations} station={this.setStation} />
 
       </div>
     );
