@@ -39,9 +39,9 @@ class App extends Component {
     };
     this.setStation = this.setStation.bind(this);
   }
-  setStation(a) {
+  setStation(currentStation) {
     this.setState({
-      station: a
+      station: currentStation
     });
   }
   render() {

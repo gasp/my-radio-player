@@ -3,20 +3,22 @@ import './Playlist.css';
 
 import PlayingAnimation from './PlayingAnimation'
 
-class Station extends Component {
+class Radio extends Component {
 
   render() {
-    var className = "station"
-    var play = "play"
+    let className = "station"
+    let play = "play"
     if (this.props.selected) {
       className += " selected";
-      play = <PlayingAnimation />; // TODO: to be removed
+      play = <PlayingAnimation />;
     }
 
+    // TODO: onclick on full line
+    // blocking: target is the td instead of the tr
     return (
-      <tr className={className}>
+      <tr className={className} >
         <td className="num">{this.props.index + 1}</td>
-        <td id={this.props.id} className="control" onClick={this.props.select}>{play}</td>
+        <td className="control" onClick={this.props.select} id={this.props.id}>{play}</td>
         <td className="title">{this.props.children}</td>
         <td className="description">{this.props.description}</td>
       </tr>
@@ -42,25 +44,26 @@ class Playlist extends Component {
     });
     this.props.station(this.props.stations[next]);
   }
-  select(evt) {
-    let current = this.props.stations.map(el => el.id).indexOf(parseInt(evt.target.id, 10));
+  select(ev) {
+    let id = parseInt(ev.target.id, 10);
+    let current = this.props.stations.map(el => el.id).indexOf(id);
     this.setState({
-      selectedId: parseInt(evt.target.id, 10)
+      selectedId: id
     });
     this.props.station(this.props.stations[current]);
   }
   render() {
-    var stations = [];
+    let stations = [];
     for (var ii = 0; ii < this.props.stations.length; ii++) {
       var isSelected = (this.props.stations[ii].id === this.state.selectedId);
       stations.push(
-        <Station index={ii} selected={isSelected}
-          key={this.props.stations[ii].id}
+        <Radio index={ii} selected={isSelected}
           id={this.props.stations[ii].id}
+          key={this.props.stations[ii].id}
           description={this.props.stations[ii].description}
-          select={this.select} >
+          select={this.select}>
           {this.props.stations[ii].title}
-        </Station>
+        </Radio>
       )
     }
     return (
