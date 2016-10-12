@@ -23,7 +23,39 @@ class Player extends Component {
     console.log('mounted');
     let $audio = document.querySelector('audio');
 
+    $audio.addEventListener('canplay', function () {
+      console.log('loaded');
+      // this.play();
+    });
 
+    /*
+    $audio.addEventListener('loadstart', ()=>{
+      console.log('loadstart');
+    });
+    $audio.addEventListener('canplaythrough', ()=>{
+      console.log('canplaythrough');
+    });
+    $audio.addEventListener('loadeddata', ()=>{
+      console.log('loadeddata');
+    });
+    $audio.addEventListener('loadedmetadata', ()=>{
+      console.log('loadedmetadata');
+    });
+    $audio.addEventListener('loadstart', ()=>{
+      console.log('loadstart');
+    });
+    $audio.addEventListener('progress', ()=>{
+      // some music is playing, the user has sound in his ears
+      // if disconnected, may be because playing music in buffer
+      console.log('progress');
+    });
+    $audio.addEventListener('stalled', ()=>{
+      console.log('stalled');
+    });
+    $audio.addEventListener('suspend', ()=>{
+      console.log('suspend');
+    });
+    */
   }
   render() {
     // https://github.com/davidchin/react-input-range would be a good solution
@@ -33,9 +65,10 @@ class Player extends Component {
           <progress value="22" max="100" />
         </div>
         <div className="volume">
-          <input type="range" min="0" max="100" onChange={this.volume} />
+          <input type="range" min="0" max="100" onChange={this.volume}
+            defaultValue="90"/>
         </div>
-        <div className="display">{this.props.station.source}</div>
+        <div className="display">{this.props.station.title}</div>
         <audio controls="controls" src={this.props.station.source} type="audio/mp3" />
       </div>
     )

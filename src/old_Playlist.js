@@ -1,8 +1,12 @@
+// #### OLD 
 import React, { Component } from 'react';
 import './Playlist.css';
 
 import PlayingAnimation from './PlayingAnimation'
 
+// TODO: can this be stateless ?
+// generate it this way ? https://egghead.io/lessons/react-dynamically-generated-components
+// more stuff can be seen there for jsx ninja tuning https://egghead.io/lessons/jsx-deep-dive
 class Radio extends Component {
 
   render() {
