@@ -27,10 +27,9 @@ const station = (state = {}, action) => {
 };
 
 const stations = (state = [], action) => {
-  console.log('stations', state);
   switch (action.type) {
     case 'STATION_ADD':
-      return [...state, station(undefined, action)];
+      return [...state, station(undefined, action.station)];
     /*
     case 'STATION_NEXT':
       const currentIndex = state

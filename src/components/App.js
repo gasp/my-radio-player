@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 
 // import Controls from './Controls';
 // import Settings from './Settings';
 // import Player from './Player';
-import Playlist from './Playlist';
-
+import Stations from '../containers/Stations';
 
 class App extends Component {
   render() {
@@ -19,10 +21,23 @@ class App extends Component {
         <p className="App-intro" id="intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Playlist />
+        <Stations />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  stations: state.stations
+})
+
+const mapDispatchToProps = dispatch => ({
+    // actions: bindActionCreators(TodoActions, dispatch)
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
+
+// export default App;

@@ -38,14 +38,16 @@ Radio.propTypes = {
 }
 
 
-const Playlist = ({ stations, onClick })  => (
+const Playlist = ({ stations, onStationSelect })  => (
   <div>
     <table className="stations">
       <tbody>
-        {stations.map(station =>
+        { console.log('Playlist stations', stations) }
+        { stations.map(station =>
           <Radio index={1} selected={true}
             id={station.id}
             key={station.id}
+            onClick={() => onStationSelect(station.id)}
             description={station.description}>
             {station.title}
           </Radio>

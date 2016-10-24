@@ -1,5 +1,4 @@
 const player = (state = {
-    stations: [],
     isPlaying: false,
     isBuffering: false,
     isLoading: false
