@@ -7,15 +7,16 @@ const mapStateToProps = (state, ownProps) => {
   return {
     stations: state.stations,
     player: {
-      currentStationId: state.player.currentStationId
+      currentStationId: state.player.current.id
     }
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onStationSelect: (id) => {
-      dispatch(playerSelectStation(id));
+    onStationSelect: (station) => {
+      // console.log('mapDispatchToProps station:',station);
+      dispatch(playerSelectStation(station));
     }
   };
 };

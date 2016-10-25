@@ -22,5 +22,5 @@ export default {
     },
 
   ],
-  "player": undefined
-}
+  "player": undefined,
+};

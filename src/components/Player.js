@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './Player.css';
 
 class Player extends Component {
   constructor(props) {
     super(props);
+    console.log('Player props',props);
     this.state =  {
-      volume: props.volume,
-      source: null // this may be translated into prop
+      volume: props.volume
     };
     this.volume = this.volume.bind(this);
   }
@@ -20,7 +21,6 @@ class Player extends Component {
   }
   componentDidMount() {
     // https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events
-    console.log('mounted');
     let $audio = document.querySelector('audio');
 
     $audio.addEventListener('canplay', function () {
@@ -28,12 +28,16 @@ class Player extends Component {
       // this.play();
     });
 
-    /*
+
+    $audio.onvolumechange = ()=>{
+      console.log('volume has been changed');
+    };
     $audio.addEventListener('loadstart', ()=>{
       console.log('loadstart');
     });
     $audio.addEventListener('canplaythrough', ()=>{
       console.log('canplaythrough');
+      $audio.play();
     });
     $audio.addEventListener('loadeddata', ()=>{
       console.log('loadeddata');
@@ -55,10 +59,14 @@ class Player extends Component {
     $audio.addEventListener('suspend', ()=>{
       console.log('suspend');
     });
+    /*
     */
   }
   render() {
     // https://github.com/davidchin/react-input-range would be a good solution
+    // https://www.npmjs.com/package/react-sound
+    // https://scotch.io/tutorials/build-a-bookshop-with-react-redux-i-react-redux-flow
+    //
     return (
       <div className="player">
         <div className="timeline buffer">
@@ -68,20 +76,23 @@ class Player extends Component {
           <input type="range" min="0" max="100" onChange={this.volume}
             defaultValue="90"/>
         </div>
-        <div className="display">{this.props.station.title}</div>
-        <audio controls="controls" src={this.props.station.source} type="audio/mp3" />
+        <div className="display">{ this.props.current.title }</div>
+        <audio controls="controls" src={this.props.current.source} type="audio/mp3}" />
       </div>
     )
   }
 }
 
 Player.propTypes = {
-  volume: React.PropTypes.number,
-  station: React.PropTypes.object
+  player: React.PropTypes.object,
+  current: React.PropTypes.object
 };
 Player.defaultProps = {
-  volume: 50,
-  station: {id: 42, source: ''}
+  current: {id:0, title:'default', soucce:''}
 };
 
-export default Player;
+const mapStateToProps = state => ({
+  player: state.player,
+  current: state.player.current
+})
+export default connect(mapStateToProps, null)(Player);

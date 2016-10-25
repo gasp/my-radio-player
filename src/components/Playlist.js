@@ -42,12 +42,12 @@ const Playlist = ({ stations, player, onStationSelect })  => (
   <div>
     <table className="stations">
       <tbody>
-        { console.log('Playlist stations', stations) }
+        { /*console.log('Playlist stations', stations)*/ }
         { stations.map(station =>
           <Radio index={1} selected={(station.id === player.currentStationId)}
             id={station.id}
             key={station.id}
-            onClick={() => onStationSelect(station.id)}
+            onClick={() => onStationSelect(station)}
             description={station.description}>
             {station.title}
           </Radio>
