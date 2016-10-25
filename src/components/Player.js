@@ -7,7 +7,9 @@ class Player extends Component {
     super(props);
     console.log('Player props',props);
     this.state =  {
-      volume: props.volume
+      volume: props.volume,
+      buffer: 0,
+
     };
     this.volume = this.volume.bind(this);
   }
@@ -23,44 +25,53 @@ class Player extends Component {
     // https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events
     let $audio = document.querySelector('audio');
 
-    $audio.addEventListener('canplay', function () {
+    $audio.addEventListener('canplay', () => {
       console.log('loaded');
-      // this.play();
     });
-
-
     $audio.onvolumechange = ()=>{
       console.log('volume has been changed');
     };
-    $audio.addEventListener('loadstart', ()=>{
+    $audio.addEventListener('loadstart', () => {
+      this.setState({buffer: 10});
       console.log('loadstart');
     });
-    $audio.addEventListener('canplaythrough', ()=>{
-      console.log('canplaythrough');
-      $audio.play();
-    });
-    $audio.addEventListener('loadeddata', ()=>{
-      console.log('loadeddata');
-    });
-    $audio.addEventListener('loadedmetadata', ()=>{
+    $audio.addEventListener('loadedmetadata', () =>{
       console.log('loadedmetadata');
+      this.setState({buffer: 20});
     });
-    $audio.addEventListener('loadstart', ()=>{
-      console.log('loadstart');
+    $audio.addEventListener('loadeddata', () =>{
+      console.log('loadeddata');
+      this.setState({buffer: 30});
     });
-    $audio.addEventListener('progress', ()=>{
+    $audio.addEventListener('loaded', () =>{
+      console.log('loaded');
+      this.setState({buffer: 50});
+    });
+    $audio.addEventListener('canplaythrough', () =>{
+      console.log('canplaythrough');
+      this.setState({buffer: 90});
+      if (this.props.player.isPlaying) {
+        $audio.play();
+      }
+    });
+
+
+    $audio.addEventListener('progress', (e) =>{
       // some music is playing, the user has sound in his ears
       // if disconnected, may be because playing music in buffer
-      console.log('progress');
+      console.log('progress', this.state.buffer, e);
+
+      if(this.state.buffer < 99) this.setState({buffer: this.state.buffer + 1});
     });
-    $audio.addEventListener('stalled', ()=>{
+    $audio.addEventListener('stalled', () =>{
       console.log('stalled');
+      this.setState({buffer: 10});
     });
-    $audio.addEventListener('suspend', ()=>{
+    $audio.addEventListener('suspend', () =>{
       console.log('suspend');
+      this.setState({buffer: 5});
     });
-    /*
-    */
+
   }
   render() {
     // https://github.com/davidchin/react-input-range would be a good solution
@@ -69,8 +80,8 @@ class Player extends Component {
     //
     return (
       <div className="player">
-        <div className="timeline buffer">
-          <progress value="22" max="100" />
+        <div className="buffer">
+          <progress value={this.state.buffer} max="100" />
         </div>
         <div className="volume">
           <input type="range" min="0" max="100" onChange={this.volume}
