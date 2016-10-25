@@ -61,7 +61,7 @@ class Player extends Component {
     // https://github.com/davidchin/react-input-range would be a good solution
     return (
       <div className="player">
-        <div className="timeline">
+        <div className="timeline buffer">
           <progress value="22" max="100" />
         </div>
         <div className="volume">

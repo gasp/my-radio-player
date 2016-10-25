@@ -7,7 +7,7 @@ export const addStation = (text) => ({
   text
 });
 
-export const stationSelect = (id) => ({
-  type: 'STATION_SELECT',
+export const playerSelectStation = (id) => ({
+  type: 'PLAYER_SELECT_STATION',
   id
 });

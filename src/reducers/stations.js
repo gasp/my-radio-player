@@ -11,7 +11,7 @@ const station = (state = {}, action) => {
     // not implemented methods
     /*
     case 'STATION_SELECT':
-      if (state.id !== state.id) {
+      if (station.id !== state.id) {
         return state;
       }
       return {...state, selected: true};
@@ -29,6 +29,9 @@ const station = (state = {}, action) => {
 const stations = (state = [], action) => {
   switch (action.type) {
     case 'STATION_ADD':
+      return [...state, station(undefined, action.station)];
+    /*
+    case 'STATION_SELECT':
       return [...state, station(undefined, action.station)];
     /*
     case 'STATION_NEXT':

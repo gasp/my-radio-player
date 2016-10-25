@@ -1,18 +1,21 @@
 import { connect } from 'react-redux';
 import Playlist from '../components/Playlist';
-import { stationSelect } from '../actions';
+import { playerSelectStation } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
   console.log('mapStateToProps: state', state);
   return {
-    stations: state.stations
+    stations: state.stations,
+    player: {
+      currentStationId: state.player.currentStationId
+    }
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onStationSelect: (id) => {
-      dispatch(stationSelect(id));
+      dispatch(playerSelectStation(id));
     }
   };
 };
