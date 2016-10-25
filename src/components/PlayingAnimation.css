@@ -6,6 +6,10 @@
   font-size: 8px;
 }
 
+.playing:hover > div {
+  background-color: #000;
+}
+
 .playing > div {
   background-color: #333;
   height: 100%;

@@ -10,4 +10,5 @@ table {
 
 .control {
   width:50px;
+  cursor: pointer;
 }
