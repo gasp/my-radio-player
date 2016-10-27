@@ -4,6 +4,7 @@ export default {
       "id": 111111111,
       "title": "FIP — France Inter Paris", "description": "Radio eclectique pour hipsters à lunettes",
       "source": "http://aifae8cah8.lb.vip.cdn.dvmr.fr/fip-midfi.mp3"
+      "alt-sources": ['http://direct.fipradio.fr/live/fip-midfi.mp3'];
     },
     {
       "id": 222222222,
