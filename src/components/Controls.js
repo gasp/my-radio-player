@@ -14,11 +14,13 @@ class Controls extends Component {
     this.setState({
       isPlaying: true
     });
+    this.props.onChangePlayStatus(true);
   }
   pause() {
     this.setState({
       isPlaying: false
     });
+    this.props.onChangePlayStatus(false);
   }
   select(id) {
     this.setState({
@@ -40,7 +42,12 @@ class Controls extends Component {
   }
 }
 
-Controls.propTypes = { isPlaying: React.PropTypes.bool};
-Controls.defaultProps = { isPlaying: false};
+Controls.propTypes = {
+  onChangePlayStatus: React.PropTypes.func,
+  isPlaying: React.PropTypes.bool
+};
+Controls.defaultProps = {
+  isPlaying: false
+};
 
 export default Controls;

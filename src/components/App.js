@@ -4,7 +4,6 @@ import './App.css';
 import { connect } from 'react-redux';
 
 
-import Controls from './Controls';
 import Settings from './Settings';
 import Player from './Player';
 import Stations from '../containers/Stations';
@@ -20,7 +19,6 @@ class App extends Component {
         <p className="App-intro" id="intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Controls />
         <Settings />
         <Player />
         <Stations />

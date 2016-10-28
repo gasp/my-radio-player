@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Controls from './Controls';
 import './Player.css';
+import { playerPlay, playerPause } from '../actions';
 
 class Player extends Component {
   constructor(props) {
@@ -9,9 +11,9 @@ class Player extends Component {
     this.state =  {
       volume: props.volume,
       buffer: 0,
-
     };
     this.volume = this.volume.bind(this);
+    this.play = this.play.bind(this);
   }
   volume(ev) {
     this.setState({
@@ -20,6 +22,10 @@ class Player extends Component {
     console.log("volume", ev.target.value);
     ev.stopPropagation();
     ev.preventDefault();
+  }
+  play(isPlaying) {
+    if (isPlaying) this.props.dispatch(playerPlay());
+    else this.props.dispatch(playerPause());
   }
   componentDidMount() {
     // https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events
@@ -50,6 +56,7 @@ class Player extends Component {
     $audio.addEventListener('canplaythrough', () =>{
       console.log('canplaythrough');
       this.setState({buffer: 90});
+      console.warn('this.props.player.isPlaying',this.props.player.isPlaying);
       if (this.props.player.isPlaying) {
         $audio.play();
       }
@@ -59,7 +66,7 @@ class Player extends Component {
     $audio.addEventListener('progress', (e) =>{
       // some music is playing, the user has sound in his ears
       // if disconnected, may be because playing music in buffer
-      console.log('progress', this.state.buffer, e);
+      // console.log('progress', this.state.buffer, e);
 
       if(this.state.buffer < 99) this.setState({buffer: this.state.buffer + 1});
     });
@@ -80,6 +87,7 @@ class Player extends Component {
     //
     return (
       <div className="player">
+        <Controls onChangePlayStatus={this.play}/>
         <div className="buffer">
           <progress value={this.state.buffer} max="100" />
         </div>
@@ -88,7 +96,7 @@ class Player extends Component {
             defaultValue="90"/>
         </div>
         <div className="display">{ this.props.current.title }</div>
-        <audio controls="controls" src={this.props.current.source} type="audio/mp3}" />
+        <audio controls="controls" src={this.props.current.source} type="audio/mp3" autoPlay={this.props.player.isPlaying} />
       </div>
     )
   }
@@ -105,5 +113,6 @@ Player.defaultProps = {
 const mapStateToProps = state => ({
   player: state.player,
   current: state.player.current
-})
+});
+
 export default connect(mapStateToProps, null)(Player);

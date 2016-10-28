@@ -11,3 +11,11 @@ export const playerSelectStation = (station) => ({
   type: 'PLAYER_SELECT_STATION',
   station
 });
+
+export const playerPlay = () => ({
+  type: 'PLAYER_PLAY'
+});
+
+export const playerPause = () => ({
+  type: 'PLAYER_PAUSE'
+});
