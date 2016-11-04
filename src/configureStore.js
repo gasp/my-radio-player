@@ -4,18 +4,11 @@ import radioApp from './reducers/index';
 
 import preset from './data/preset.js';
 
-const devtool = () => {
-  if (window.__REDUX_DEVTOOLS_EXTENSION__) {
-    return window.__REDUX_DEVTOOLS_EXTENSION__();
-  }
-  else return () => ({});
-};
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const configureStore = () => {
-  const persistedState = preset;
-  let store = createStore(radioApp, persistedState, compose(
-    autoRehydrate(),
-    devtool()
+  let store = createStore(radioApp, preset, composeEnhancers(
+    autoRehydrate()
   ));
   persistStore(store, {whitelist: ['stations'], debounce: 1000, keyPrefix:'r'});
 
