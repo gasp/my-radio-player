@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Controls from './Controls';
 import './Player.css';
-import { playerPlay, playerPause } from '../actions';
+import { playerPlay, playerPause, playerBuffer } from '../actions';
 
 class Player extends Component {
   constructor(props) {
     super(props);
     // console.log('Player props',props);
     this.state =  {
-      volume: props.volume, // TODO does this needs to be in props ? can't we use state ?
+      // TODO does this needs to be in props ? can't we use state ?
+      // initial volume may be saved in localStorage
+      volume: props.volume,
       buffer: 0,
     };
     this.volume = this.volume.bind(this);
@@ -26,8 +28,14 @@ class Player extends Component {
     ev.preventDefault();
   }
   play(isPlaying) {
-    if (isPlaying) this.props.dispatch(playerPlay());
-    else this.props.dispatch(playerPause());
+    if (isPlaying) {
+      this.props.dispatch(playerPlay());
+      this.$audio.play();
+    }
+    else {
+      this.props.dispatch(playerPause());
+      this.$audio.pause();
+    }
   }
   componentDidMount() {
     // Media Events
@@ -37,33 +45,30 @@ class Player extends Component {
     // an alternative would be using the webaudioapi
     // http://codetheory.in/controlling-the-volume-of-an-audio-file-in-javascript/
 
-    this.$audio.onvolumechange = (ev) => {
-      console.log('volume has been changed to ', this.$audio.volume);
-    };
-
-    this.$audio.addEventListener('canplay', () => {
-      console.log('loaded');
-    });
+    this.setState({volume: this.$audio.volume * 100});
+    console.log('setting volume', this.$audio.volume * 100);
 
     this.$audio.addEventListener('loadstart', () => {
+      this.props.dispatch(playerBuffer(true));
       this.setState({buffer: 10});
-      console.log('loadstart');
+      console.log('audio: loadstart');
     });
     this.$audio.addEventListener('loadedmetadata', () => {
-      console.log('loadedmetadata');
+      console.log('audio: loadedmetadata');
       this.setState({buffer: 20});
     });
     this.$audio.addEventListener('loadeddata', () => {
-      console.log('loadeddata');
+      console.log('audio: loadeddata');
       this.setState({buffer: 30});
     });
     this.$audio.addEventListener('loaded', () => {
-      console.log('loaded');
+      console.log('audio: loaded');
       this.setState({buffer: 50});
     });
     this.$audio.addEventListener('canplaythrough', () => {
-      console.log('canplaythrough');
+      console.log('audio: canplaythrough');
       this.setState({buffer: 90});
+      this.props.dispatch(playerBuffer(false));
       console.warn('this.props.player.isPlaying',this.props.player.isPlaying);
       if (this.props.player.isPlaying) {
         this.$audio.play();
@@ -100,7 +105,7 @@ class Player extends Component {
           <progress value={this.state.buffer} max="100" />
         </div>
         <div className="volume">
-          <input type="range" min="0" max="100" onChange={this.volume}
+          <input type="range" min="0" max="100" onChange={this.state.volume}
             defaultValue="90"/>
         </div>
         <div className="display">{ this.props.current.title }</div>

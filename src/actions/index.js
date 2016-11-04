@@ -19,3 +19,8 @@ export const playerPlay = () => ({
 export const playerPause = () => ({
   type: 'PLAYER_PAUSE'
 });
+
+export const playerBuffer = (isBuffering) => ({
+  type: 'PLAYER_BUFFER',
+  isBuffering
+});

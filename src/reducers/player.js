@@ -9,6 +9,8 @@ const player = (state = {
       return {...state, isPlaying: true};
     case 'PLAYER_PAUSE':
       return {...state, isPlaying: false};
+    case 'PLAYER_BUFFER':
+      return {...state, isBuffering: action.isBuffering};
     case 'PLAYER_SELECT_STATION':
       return {...state, current: action.station};
     default:
