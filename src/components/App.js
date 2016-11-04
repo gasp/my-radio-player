@@ -29,11 +29,11 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   stations: state.stations
-})
+});
 
 const mapDispatchToProps = dispatch => ({
     // actions: bindActionCreators(TodoActions, dispatch)
-})
+});
 
 export default connect(
   mapStateToProps,

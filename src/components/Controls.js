@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Controls.css';
 
 class Controls extends Component {
-  constructor(props) {
+  constructor(props) {
     super(props);
     this.state =  {
       isPlaying: props.isPlaying
@@ -28,7 +28,7 @@ class Controls extends Component {
     });
   }
   next() {
-    this.setState({})
+    this.setState({});
   }
   render() {
     return (
@@ -38,7 +38,7 @@ class Controls extends Component {
         <button type="button" className="controls-prev" disabled={!this.state.isPlaying} onClick={this.pause}>pause</button>
         <button type="button" className="controls-prev" disabled={this.state.isPlaying} onClick={this.play}>play</button>
       </div>
-    )
+    );
   }
 }
 

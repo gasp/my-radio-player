@@ -5,11 +5,11 @@ import './Player.css';
 import { playerPlay, playerPause } from '../actions';
 
 class Player extends Component {
-  constructor(props) {
+  constructor(props) {
     super(props);
     console.log('Player props',props);
     this.state =  {
-      volume: props.volume,
+      volume: props.volume, // TODO does this needs to be in props ? can't we use state ?
       buffer: 0,
     };
     this.volume = this.volume.bind(this);
@@ -34,26 +34,26 @@ class Player extends Component {
     $audio.addEventListener('canplay', () => {
       console.log('loaded');
     });
-    $audio.onvolumechange = ()=>{
+    $audio.onvolumechange = () => {
       console.log('volume has been changed');
     };
     $audio.addEventListener('loadstart', () => {
       this.setState({buffer: 10});
       console.log('loadstart');
     });
-    $audio.addEventListener('loadedmetadata', () =>{
+    $audio.addEventListener('loadedmetadata', () => {
       console.log('loadedmetadata');
       this.setState({buffer: 20});
     });
-    $audio.addEventListener('loadeddata', () =>{
+    $audio.addEventListener('loadeddata', () => {
       console.log('loadeddata');
       this.setState({buffer: 30});
     });
-    $audio.addEventListener('loaded', () =>{
+    $audio.addEventListener('loaded', () => {
       console.log('loaded');
       this.setState({buffer: 50});
     });
-    $audio.addEventListener('canplaythrough', () =>{
+    $audio.addEventListener('canplaythrough', () => {
       console.log('canplaythrough');
       this.setState({buffer: 90});
       console.warn('this.props.player.isPlaying',this.props.player.isPlaying);
@@ -63,18 +63,18 @@ class Player extends Component {
     });
 
 
-    $audio.addEventListener('progress', (e) =>{
+    $audio.addEventListener('progress', () => {
       // some music is playing, the user has sound in his ears
       // if disconnected, may be because playing music in buffer
       // console.log('progress', this.state.buffer, e);
 
       if(this.state.buffer < 99) this.setState({buffer: this.state.buffer + 1});
     });
-    $audio.addEventListener('stalled', () =>{
+    $audio.addEventListener('stalled', () => {
       console.log('stalled');
       this.setState({buffer: 10});
     });
-    $audio.addEventListener('suspend', () =>{
+    $audio.addEventListener('suspend', () => {
       console.log('suspend');
       this.setState({buffer: 5});
     });
@@ -98,13 +98,14 @@ class Player extends Component {
         <div className="display">{ this.props.current.title }</div>
         <audio controls="controls" src={this.props.current.source} type="audio/mp3" autoPlay={this.props.player.isPlaying} />
       </div>
-    )
+    );
   }
 }
 
 Player.propTypes = {
   player: React.PropTypes.object,
-  current: React.PropTypes.object
+  current: React.PropTypes.object,
+  dispatch: React.PropTypes.fun
 };
 Player.defaultProps = {
   current: {id:0, title:'default', soucce:''}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Playlist.css';
 
-import PlayingAnimation from './PlayingAnimation'
+import PlayingAnimation from './PlayingAnimation';
 
 // TODO: can this be stateless ?
 // generate it this way ? https://egghead.io/lessons/react-dynamically-generated-components
@@ -28,14 +28,17 @@ class Radio extends Component {
         <td className="title">{this.props.children}</td>
         <td className="description">{this.props.description}</td>
       </tr>
-    )
+    );
   }
 }
 Radio.propTypes = {
   selected: React.PropTypes.bool,
+  id: React.PropTypes.num,
+  index: React.PropTypes.num,
+  children: React.PropTypes.obj, // TODO: use {children} instead of {this.props.children} ?
   description: React.PropTypes.string,
   onClick: React.PropTypes.func,
-}
+};
 
 
 const Playlist = ({ stations, player, onStationSelect })  => (
@@ -55,11 +58,12 @@ const Playlist = ({ stations, player, onStationSelect })  => (
       </tbody>
     </table>
   </div>
-)
+);
 
 Playlist.propTypes = {
   stations: React.PropTypes.array, // TODO: should be PropTypes.arrayOf(PropTypes.shape({
-  //onSelectStation: React.PropTypes.func // todo
+  player: React.PropTypes.obj,
+  onStationSelect: React.PropTypes.func // TODO
 };
 Playlist.defaultProps = {
   stations: [
