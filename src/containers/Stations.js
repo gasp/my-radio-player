@@ -3,7 +3,7 @@ import Playlist from '../components/Playlist';
 import { playerSelectStation } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('mapStateToProps: state', state);
+  // console.log('mapStateToProps: state', state);
   return {
     stations: state.stations,
     player: {

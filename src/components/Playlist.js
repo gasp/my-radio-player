@@ -33,9 +33,12 @@ class Radio extends Component {
 }
 Radio.propTypes = {
   selected: React.PropTypes.bool,
-  id: React.PropTypes.num,
-  index: React.PropTypes.num,
-  children: React.PropTypes.obj, // TODO: use {children} instead of {this.props.children} ?
+  id: React.PropTypes.number,
+  index: React.PropTypes.number,
+  // TODO: use {children} instead of {this.props.children} ?
+  // should be node or element, or instanceOf, oneOf, check the doc
+  // https://facebook.github.io/react/docs/typechecking-with-proptypes.html
+  children: React.PropTypes.string,
   description: React.PropTypes.string,
   onClick: React.PropTypes.func,
 };
@@ -62,7 +65,7 @@ const Playlist = ({ stations, player, onStationSelect })  => (
 
 Playlist.propTypes = {
   stations: React.PropTypes.array, // TODO: should be PropTypes.arrayOf(PropTypes.shape({
-  player: React.PropTypes.obj,
+  player: React.PropTypes.object,
   onStationSelect: React.PropTypes.func // TODO
 };
 Playlist.defaultProps = {
