@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Controls.css';
+import ButtonPlay from './ButtonPlay';
+
 
 class Controls extends Component {
   constructor(props) {
@@ -33,6 +35,7 @@ class Controls extends Component {
   render() {
     return (
       <div className="controls">
+        <ButtonPlay />
         <button type="button" className="controls-prev" onClick={this.prev}>previous</button>
         <button type="button" className="controls-prev" onClick={this.prev}>next</button> |&nbsp;
         <button type="button" className="controls-prev" disabled={!this.state.isPlaying} onClick={this.pause}>pause</button>
