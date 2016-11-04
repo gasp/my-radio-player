@@ -1,0 +1,28 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "jasmine": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "semi": "error",
+    "eqeqeq": "warn",
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "no-alert": "error",
+    "no-console": "off",
+    arrow-spacing: ["warn", { "before": true, "after": true }]
+  }
+}
