@@ -11,6 +11,8 @@ class Controls extends Component {
     };
     this.play = this.play.bind(this);
     this.pause = this.pause.bind(this);
+    this.pause = this.next.bind(this);
+    this.pause = this.next.bind(this);
   }
   play() {
     this.setState({
@@ -24,11 +26,7 @@ class Controls extends Component {
     });
     this.props.onChangePlayStatus(false);
   }
-  select(id) {
-    this.setState({
-      current: id
-    });
-  }
+
   next() {
     this.setState({});
   }
@@ -36,8 +34,7 @@ class Controls extends Component {
     return (
       <div className="controls">
         <ButtonPlay />
-        <button type="button" className="controls-prev" onClick={this.prev}>previous</button>
-        <button type="button" className="controls-prev" onClick={this.prev}>next</button> |&nbsp;
+        <button type="button" className="controls-prev" onClick={this.props.onClickNext}>next</button> |&nbsp;
         <button type="button" className="controls-prev" disabled={!this.state.isPlaying} onClick={this.pause}>pause</button>
         <button type="button" className="controls-prev" disabled={this.state.isPlaying} onClick={this.play}>play</button>
       </div>
@@ -47,6 +44,7 @@ class Controls extends Component {
 
 Controls.propTypes = {
   onChangePlayStatus: React.PropTypes.func,
+  onClickNext: React.PropTypes.func,
   isPlaying: React.PropTypes.bool
 };
 Controls.defaultProps = {

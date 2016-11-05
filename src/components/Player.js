@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Controls from './Controls';
 import './Player.css';
-import { playerPlay, playerPause, playerBuffer } from '../actions';
+import { playerPlay, playerPause, playerBuffer, stationNext } from '../actions';
 
 class Player extends Component {
   constructor(props) {
@@ -16,6 +16,7 @@ class Player extends Component {
     };
     this.volume = this.volume.bind(this);
     this.play = this.play.bind(this);
+    this.next = this.next.bind(this);
   }
   volume(ev) {
     this.setState({
@@ -36,6 +37,10 @@ class Player extends Component {
       this.props.dispatch(playerPause());
       this.$audio.pause();
     }
+  }
+  // prev / next
+  next() {
+    this.props.dispatch(stationNext());
   }
   componentDidMount() {
     // Media Events
@@ -100,7 +105,7 @@ class Player extends Component {
     //
     return (
       <div className="player">
-        <Controls onChangePlayStatus={this.play}/>
+        <Controls onChangePlayStatus={this.play} onClickNext={this.next} />
         <div className="buffer">
           <progress value={this.state.buffer} max="100" />
         </div>

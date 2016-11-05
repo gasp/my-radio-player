@@ -24,3 +24,7 @@ export const playerBuffer = (isBuffering) => ({
   type: 'PLAYER_BUFFER',
   isBuffering
 });
+
+export const stationNext = () => ({
+  type: 'STATION_NEXT'
+});
