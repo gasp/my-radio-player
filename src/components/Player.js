@@ -110,7 +110,7 @@ class Player extends Component {
           <progress value={this.state.buffer} max="100" />
         </div>
         <div className="volume">
-          <input type="range" min="0" max="100" onChange={this.state.volume}
+          <input type="range" min="0" max="100" onChange={this.volume}
             defaultValue="90"/>
         </div>
         <div className="display">{ this.props.current.title }</div>
