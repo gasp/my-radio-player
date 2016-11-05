@@ -9,34 +9,27 @@ class Controls extends Component {
     this.state =  {
       isPlaying: props.isPlaying
     };
-    this.play = this.play.bind(this);
-    this.pause = this.pause.bind(this);
-    this.pause = this.next.bind(this);
-    this.pause = this.next.bind(this);
+    this.playpause = this.playpause.bind(this);
   }
-  play() {
-    this.setState({
-      isPlaying: true
-    });
-    this.props.onChangePlayStatus(true);
-  }
-  pause() {
-    this.setState({
-      isPlaying: false
-    });
-    this.props.onChangePlayStatus(false);
-  }
-
-  next() {
-    this.setState({});
+  playpause() {
+    if (!this.state.isPlaying) {
+      this.setState({
+        isPlaying: true
+      });
+      this.props.onChangePlayStatus(true);
+    } else {
+      this.setState({
+        isPlaying: false
+      });
+      this.props.onChangePlayStatus(false);
+    }
   }
   render() {
     return (
       <div className="controls">
-        <ButtonPlay />
-        <button type="button" className="controls-prev" onClick={this.props.onClickNext}>next</button> |&nbsp;
-        <button type="button" className="controls-prev" disabled={!this.state.isPlaying} onClick={this.pause}>pause</button>
-        <button type="button" className="controls-prev" disabled={this.state.isPlaying} onClick={this.play}>play</button>
+        <button type="button" className="controls-next" onClick={this.props.onClickNext}>next</button> |&nbsp;
+        <ButtonPlay isPlaying={this.state.isPlaying} isLoading={false}
+          onClick={this.playpause} />
       </div>
     );
   }

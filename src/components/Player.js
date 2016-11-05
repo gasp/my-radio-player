@@ -102,7 +102,7 @@ class Player extends Component {
     // https://github.com/davidchin/react-input-range would be a good solution
     // https://www.npmjs.com/package/react-sound
     // https://scotch.io/tutorials/build-a-bookshop-with-react-redux-i-react-redux-flow
-    //
+    // http://codepen.io/cliffpyles/pen/xbsiC a great circular progress bar
     return (
       <div className="player">
         <Controls onChangePlayStatus={this.play} onClickNext={this.next} />
