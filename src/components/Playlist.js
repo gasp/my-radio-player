@@ -7,8 +7,6 @@ import PlayingAnimation from './PlayingAnimation';
 // generate it this way ? https://egghead.io/lessons/react-dynamically-generated-components
 // more stuff can be seen there for jsx ninja tuning https://egghead.io/lessons/jsx-deep-dive
 
-
-
 class Radio extends Component {
 
   render() {
@@ -46,7 +44,7 @@ Radio.propTypes = {
 
 const Playlist = ({ stations, player, onStationSelect })  => (
   <div>
-    <table className="stations">
+    <table className="playlist stations">
       <tbody>
         { /*console.log('Playlist stations', stations)*/ }
         { stations.map(station =>

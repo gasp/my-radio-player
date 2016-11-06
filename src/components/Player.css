@@ -1,3 +1,53 @@
 .player {
-  background-color: red;
+}
+
+.player .buffer {
+  position: fixed;
+  bottom: 10px;
+  height: 10px;
+  left: 0;
+  width: 300px;
+  opacity: 1;
+}
+.player .buffer progress {
+  appearance: none;
+  width: 340px;
+  height: 2px;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 0;
+  box-shadow: 0;
+}
+
+progress[value]::-webkit-progress-value {
+  background-image:
+	   -webkit-linear-gradient(-45deg,
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%,
+	                           rgba(0,0, 0, .1) 66%, transparent 66%),
+	   -webkit-linear-gradient(top,
+	                           rgba(255, 255, 255, .25),
+	                           rgba(0, 0, 0, .25)),
+	   -webkit-linear-gradient(left, #09c, #f44);
+
+    border-radius: 2px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+
+.volume {
+  height: 30px;
+  width: 130px;
+  margin: auto;
+  opacity: .2;
+}
+.volume:hover {
+  opacity: 1;
+}
+.volume input[type="range"] {
+  outline: none;
+  -webkit-appearance:none;
+  height:1px;
+  background: #000;
 }

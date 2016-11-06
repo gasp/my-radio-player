@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Controls.css';
 import ButtonPlay from './ButtonPlay';
 
-
 class Controls extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +26,7 @@ class Controls extends Component {
   render() {
     return (
       <div className="controls">
-        <button type="button" className="controls-next" onClick={this.props.onClickNext}>next</button> |&nbsp;
+        <button type="button" className="controls-next" onClick={this.props.onClickNext}>next</button>
         <ButtonPlay isPlaying={this.state.isPlaying} isLoading={false}
           onClick={this.playpause} />
       </div>

@@ -105,6 +105,7 @@ class Player extends Component {
     // http://codepen.io/cliffpyles/pen/xbsiC a great circular progress bar
     return (
       <div className="player">
+        <h1 className="display">{ this.props.current.title }</h1>
         <Controls onChangePlayStatus={this.play} onClickNext={this.next} />
         <div className="buffer">
           <progress value={this.state.buffer} max="100" />
@@ -113,8 +114,7 @@ class Player extends Component {
           <input type="range" min="0" max="100" onChange={this.volume}
             defaultValue="90"/>
         </div>
-        <div className="display">{ this.props.current.title }</div>
-        <audio controls="controls" src={this.props.current.source}
+        <audio src={this.props.current.source}
           type="audio/mp3" autoPlay={this.props.player.isPlaying} />
       </div>
     );

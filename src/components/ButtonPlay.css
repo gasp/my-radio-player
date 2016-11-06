@@ -13,35 +13,32 @@ http://codepen.io/jboeijenga/pen/pvqIj
   background: transparent;
   width: 0;
   height: 0;
-  border-top: 33px solid transparent;
-  border-bottom: 33px solid transparent;
-  border-left: 39.6px solid #000;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 24px solid #2c3e50;
   border-right: none;
-  margin: 66px auto 33px auto;
+  margin: 20px auto 10px auto;
   padding: 0;
   position: relative;
   z-index: 1;
   transition: all 0.3s;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  left: 6.6px;
+  left: 4px;
 }
 .play:before {
   content: '';
   position: absolute;
-  top: -49.5px;
-  left: -75.9px;
-  bottom: -49.5px;
-  right: -23.1px;
+  top: -30px;
+  left: -46px;
+  bottom: -30px;
+  right: -14px;
   border-radius: 50%;
-  border: 6.6px solid #000;
+  border: 4px solid #2c3e50;
   z-index: 2;
   transition: all 0.3s;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-}
-.play:disabled {
-  opacity: .9;
 }
 
 .play[data-loading:"true"] {
@@ -72,12 +69,12 @@ http://codepen.io/jboeijenga/pen/pvqIj
 .play.active:after {
   content: '';
   opacity: 1;
-  width: 33px;
-  height: 52.8px;
-  background: #000;
+  width: 20px;
+  height: 32px;
+  background: #2c3e50;
   position: absolute;
-  right: 3.3px;
-  top: -26.4px;
-  border-left: 13.2px solid #000;
-  box-shadow: inset 19.8px 0 0 0 #f9f9f9;
+  right: 2px;
+  top: -16px;
+  border-left: 8px solid #2c3e50;
+  box-shadow: inset 12px 0 0 0 #f9f9f9;
 }

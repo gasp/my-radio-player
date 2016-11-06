@@ -1,0 +1,9 @@
+ .settingsBar {
+  display: block;
+  float: right;
+  text-decoration: none;
+  color: #f0f0f0;
+ }
+.settingsBar:hover {
+  color: #0d9db8;
+}

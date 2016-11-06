@@ -1,5 +1,22 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  -webkit-app-region: drag;
+}
+/* be more precise on buttons  and range
+to avoid blocking the whole line */
+button, input, .buttons, .range {
+  -webkit-app-region: no-drag;
+}
+
+.details {
+  display: none;
+}
+.playlist {
+  display: none;
+  height: 300px;
+  background-color: #f4f4f4 ;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
 }

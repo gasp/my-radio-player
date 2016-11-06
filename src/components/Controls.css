@@ -1,3 +1,10 @@
 .controls {
-  background-color: pink;
+  text-align: center;
+}
+
+.player .controls-next {
+  position: absolute;
+  top: 50px;
+  right: 65px
+
 }
