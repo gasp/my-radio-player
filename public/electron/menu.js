@@ -1,4 +1,4 @@
-const {Menu} = require('electron')
+const { Menu } = require('electron');
 
 // look at accelerator
 // https://github.com/electron/electron/blob/master/docs/api/accelerator.md#available-key-codes
@@ -7,25 +7,35 @@ const template = [
     label: 'Playlist',
     submenu: [
       {
-        label: 'Play',
-        accelerator: 'CmdOrCtrl+P',
+        label: 'Pause/Pause',
+        accelerator: 'Space',
         click: function (item, focusedWindow) {
-          console.log('play');
+          console.log('space', item, focusedWindow);
         }
       },
       {
         label: 'Next',
         accelerator: 'MediaNextTrack',
         click: function (item, focusedWindow) {
-          console.log('next');
+          console.log('next', item, focusedWindow);
         }
+      }
+    ]
+  },
+  {
+    label: 'View',
+    submenu: [
+      {
+        label: 'Always on top',
+        type: 'checkbox',
+        click : (item, focusedWindow) => {
+          console.log(item.checked, focusedWindow);
+
+        },
+        checked: true
       },
       {
-        label: 'Pause',
-        accelerator: 'Space',
-        click: function (item, focusedWindow) {
-          console.log('space');
-        }
+        type: 'separator'
       },
       {
         role: 'resetzoom'
@@ -73,10 +83,19 @@ const template = [
 
 if (process.platform === 'darwin') {
   template.unshift({
-    label: 'Radio',
+    label: 'oᴉpɐᴚ',
     submenu: [
       {
+        label: 'oᴉpɐᴚ ʇnoqⱯ',
         role: 'about'
+      },
+      {
+        label: 'Preferences',
+        role: 'settings',
+        accelerator: 'Meta+,',
+        click () {
+
+        }
       },
       {
         type: 'separator'
@@ -111,5 +130,5 @@ module.exports = function () {
   setTimeout(function () {
     const menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
-  }, 1000)
+  }, 1000);
 };
