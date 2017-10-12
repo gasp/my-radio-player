@@ -4,7 +4,13 @@
 
 .player .controls-next {
   position: absolute;
-  top: 50px;
-  right: 65px
-
+  width: 3.5em;
+  height: 3.5em;
+  top: 35px;
+  right: 65px;
+  border-radius: 50%;
+  font-size: 15px;
+  cursor: pointer;
+  background: none;
+  border: 3px solid black;
 }
