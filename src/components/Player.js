@@ -14,6 +14,7 @@ class Player extends Component {
       volume: props.volume,
       buffer: 0,
     };
+
     this.volume = this.volume.bind(this);
     this.play = this.play.bind(this);
     this.next = this.next.bind(this);
@@ -127,12 +128,12 @@ Player.propTypes = {
   dispatch: React.PropTypes.func
 };
 Player.defaultProps = {
-  current: {id:0, title:'default', soucce:''}
+  current: {id:0, title:'Default - Radio Nova', source:'http://novazz.ice.infomaniak.ch/novazz-128.mp3?listenerid=410281891613c89cb6cc823c55ad7e7f&awparams=companionAds%3Atrue'}
 };
 
 const mapStateToProps = state => ({
   player: state.player,
-  current: state.player.current
+  //current: state.player.current
 });
 
 export default connect(mapStateToProps, null)(Player);
