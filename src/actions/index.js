@@ -1,7 +1,6 @@
 let nextStationId = 0;
 
-// TODO: rename as stationAdd
-export const addStation = (text) => ({
+export const stationAdd = (text) => ({
   type: 'STATION_ADD',
   id: nextStationId++,
   text
