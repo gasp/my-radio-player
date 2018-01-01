@@ -1,25 +1,25 @@
 {
   "name": "my-radio-player",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
-  "main": "build/main.js",
+  "main": "public/electron.js",
   "eslintConfig": {
     "extends": "react-app"
   },
   "devDependencies": {
     "deep-freeze": "0.0.1",
-    "eslint": "^3.9.1",
-    "eslint-plugin-react": "^6.5.0",
+    "electron": "^1.4.1",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^6.10.3",
     "expect": "^1.20.2",
-    "react-scripts": "0.6.0",
-    "electron": "^1.4.1"
+    "react-scripts": "0.6.0"
   },
   "dependencies": {
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-redux": "^4.4.5",
-    "redux": "^3.6.0",
-    "redux-persist": "^4.0.0-alpha6"
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "react-redux": "^4.4.8",
+    "redux": "^3.7.2",
+    "redux-persist": "^4.10.2"
   },
   "scripts": {
     "start": "react-scripts start",

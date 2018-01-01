@@ -1,9 +1,9 @@
 const player = (state = {
-    isPlaying: false,
-    isBuffering: false,
-    isLoading: false,
-    current: {id: false, title: '[none]'}
-  }, action) => {
+  isPlaying: false,
+  isBuffering: false,
+  isLoading: false,
+  current: {id: false, title: '[none]'}
+}, action) => {
   switch (action.type) {
     case 'PLAYER_PLAY':
       return {...state, isPlaying: true};
