@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 
-
 import Settings from './Settings';
 import Player from './Player';
 import Stations from '../containers/Stations';
